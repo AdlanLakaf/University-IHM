@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import lessonsData from '../data/lessons.json';
-import { Clock, CheckCircle, Check } from 'lucide-react';
+import { Clock, CheckCircle, Check, PlayCircle } from 'lucide-react';
 import { getProgress, markLessonComplete } from '../utils/storage';
 import './Learning.css';
 
@@ -13,13 +13,21 @@ export default function Learning() {
     }, []);
 
     const toggleLesson = (id: number) => {
+        // Only toggle if closing, or opening a different one.
+        // If opening, we just expand content which is the "Start".
         setActiveLesson(activeLesson === id ? null : id);
     };
 
-    const handleComplete = (e: React.MouseEvent, id: number) => {
+    const handleStart = (e: React.MouseEvent, id: number) => {
+        e.stopPropagation();
+        setActiveLesson(id);
+    };
+
+    const handleFinish = (e: React.MouseEvent, id: number) => {
         e.stopPropagation();
         markLessonComplete(id);
         setCompletedLessons([...completedLessons, id]);
+        // Optional: Close lesson or keep open? Let's keep open to show success state.
     };
 
     return (
@@ -32,10 +40,12 @@ export default function Learning() {
             <div className="lessons-list">
                 {lessonsData.map((lesson) => {
                     const isCompleted = completedLessons.includes(lesson.id);
+                    const isActive = activeLesson === lesson.id;
+
                     return (
                         <div
                             key={lesson.id}
-                            className={`lesson-card ${activeLesson === lesson.id ? 'active' : ''}`}
+                            className={`lesson-card ${isActive ? 'active' : ''}`}
                             onClick={() => toggleLesson(lesson.id)}
                         >
                             <div className="lesson-header">
@@ -51,22 +61,42 @@ export default function Learning() {
 
                             <div className="lesson-content">
                                 <p>{lesson.description}</p>
-                                {activeLesson === lesson.id && (
+
+                                {!isActive && !isCompleted && (
+                                    <button className="btn btn-primary start-btn" onClick={(e) => handleStart(e, lesson.id)} style={{ marginTop: '1rem' }}>
+                                        <PlayCircle size={18} /> Start Lesson
+                                    </button>
+                                )}
+
+                                {isActive && (
                                     <div className="lesson-details">
                                         <hr />
-                                        <p><strong>Key Takeaways:</strong></p>
-                                        <ul>
-                                            <li>Always obey regulatory signs.</li>
-                                            <li>Come to a complete stop at Stop signs.</li>
-                                            <li>Yield to pedestrians in crosswalks.</li>
-                                        </ul>
-                                        <button
-                                            className={`btn ${isCompleted ? 'btn-secondary' : 'btn-primary'} start-btn`}
-                                            onClick={(e) => handleComplete(e, lesson.id)}
-                                            disabled={isCompleted}
-                                        >
-                                            {isCompleted ? <><Check size={18} /> Completed</> : "Mark as Completed"}
-                                        </button>
+                                        <div className="lesson-body-content">
+                                            <h4>Full Lesson Content</h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                                            <p><strong>Key Takeaways:</strong></p>
+                                            <ul>
+                                                <li>Always obey regulatory signs.</li>
+                                                <li>Come to a complete stop at Stop signs.</li>
+                                                <li>Yield to pedestrians in crosswalks.</li>
+                                            </ul>
+                                        </div>
+
+                                        <div className="lesson-actions">
+                                            {isCompleted ? (
+                                                <button className="btn btn-secondary start-btn" disabled>
+                                                    <Check size={18} /> Completed
+                                                </button>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-primary start-btn"
+                                                    onClick={(e) => handleFinish(e, lesson.id)}
+                                                >
+                                                    Finish & Mark Complete
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
                                 )}
                             </div>
