@@ -1,0 +1,145 @@
+.learning-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-header {
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+.lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.lesson-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 5px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.lesson-card:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-md);
+}
+
+.lesson-card.active {
+    border-left-color: var(--color-primary);
+    background-color: #fbfbfb;
+}
+
+.lesson-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.lesson-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--color-secondary);
+    background: rgba(233, 196, 106, 0.15);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.lesson-meta {
+    color: #adb5bd;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+}
+
+.duration {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.lesson-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.lesson-content p {
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+.lesson-details {
+    margin-top: 1rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lesson-details hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 1rem 0;
+}
+
+.lesson-details ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: #495057;
+}
+
+.lesson-details li {
+    margin-bottom: 0.25rem;
+}
+
+.start-btn {
+    width: 100%;
+}
+
+.lesson-status {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.circle-placeholder {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 50%;
+}
+
+/* Hide status on active to make room for content if needed, or adjust layout */
+.lesson-card.active .lesson-status {
+    top: 2rem;
+}

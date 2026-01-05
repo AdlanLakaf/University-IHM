@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "category": "Traffic Signs",
+        "title": "Understanding Regulatory Signs",
+        "description": "Learn about stop signs, yield signs, and speed limits. These signs tell you what you must do, or must not do, according to the law.",
+        "duration": "10 min",
+        "icon": "Octagon"
+    },
+    {
+        "id": 2,
+        "category": "Traffic Signs",
+        "title": "Warning Signs",
+        "description": "Identify diamond-shaped yellow signs that warn you of upcoming hazards like curves, intersections, or pedestrian crossings.",
+        "duration": "15 min",
+        "icon": "Triangle"
+    },
+    {
+        "id": 3,
+        "category": "Rules of the Road",
+        "title": "Right of Way",
+        "description": "Who goes first? Master the rules for 4-way stops, roundabouts, and merging into traffic.",
+        "duration": "20 min",
+        "icon": "ArrowRightLeft"
+    },
+    {
+        "id": 4,
+        "category": "Safety",
+        "title": "Defensive Driving",
+        "description": "Techniques to anticipate dangerous situations and avoid accidents.",
+        "duration": "12 min",
+        "icon": "Shield"
+    },
+    {
+        "id": 5,
+        "category": "Safety",
+        "title": "Driving in Bad Weather",
+        "description": "How to handle rain, snow, fog, and ice safely.",
+        "duration": "15 min",
+        "icon": "CloudRain"
+    }
+]

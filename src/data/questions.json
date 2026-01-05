@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "question": "What does an octagonal (eight-sided) sign mean?",
+        "options": [
+            "Yield",
+            "Stop",
+            "Speed Limit",
+            "No Entry"
+        ],
+        "answer": "Stop"
+    },
+    {
+        "id": 2,
+        "question": "When seeing a flashing red light at an intersection, you must:",
+        "options": [
+            "Slow down and proceed with caution",
+            "Stop completely, then proceed when safe",
+            "Wait for the green light",
+            "Make a U-turn"
+        ],
+        "answer": "Stop completely, then proceed when safe"
+    },
+    {
+        "id": 3,
+        "question": "You may cross a double solid yellow line to:",
+        "options": [
+            "Pass a slow moving truck",
+            "Turn into a driveway",
+            "Pass a school bus",
+            "Drive faster than the speed limit"
+        ],
+        "answer": "Turn into a driveway"
+    },
+    {
+        "id": 4,
+        "question": "If two vehicles arrive at a 4-way stop at the same time:",
+        "options": [
+            "The vehicle on the left goes first",
+            "The vehicle on the right goes first",
+            "The faster vehicle goes first",
+            "The larger vehicle goes first"
+        ],
+        "answer": "The vehicle on the right goes first"
+    },
+    {
+        "id": 5,
+        "question": "What is the safest way to enter a highway from an entrance ramp?",
+        "options": [
+            "Stop and wait for a gap",
+            "Drive slowly on the shoulder",
+            "Accelerate to highway speed and merge safely",
+            "Honk your horn"
+        ],
+        "answer": "Accelerate to highway speed and merge safely"
+    }
+]
