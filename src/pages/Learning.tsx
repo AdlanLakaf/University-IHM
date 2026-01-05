@@ -1,34 +1,17 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import lessonsData from '../data/lessons.json';
-import { Clock, CheckCircle, Check, PlayCircle } from 'lucide-react';
-import { getProgress, markLessonComplete } from '../utils/storage';
+import { Clock, CheckCircle, PlayCircle } from 'lucide-react';
+import { getProgress } from '../utils/storage';
 import './Learning.css';
 
 export default function Learning() {
-    const [activeLesson, setActiveLesson] = useState<number | null>(null);
+    const navigate = useNavigate();
     const [completedLessons, setCompletedLessons] = useState<number[]>([]);
 
     useEffect(() => {
         setCompletedLessons(getProgress().completedLessons);
     }, []);
-
-    const toggleLesson = (id: number) => {
-        // Only toggle if closing, or opening a different one.
-        // If opening, we just expand content which is the "Start".
-        setActiveLesson(activeLesson === id ? null : id);
-    };
-
-    const handleStart = (e: React.MouseEvent, id: number) => {
-        e.stopPropagation();
-        setActiveLesson(id);
-    };
-
-    const handleFinish = (e: React.MouseEvent, id: number) => {
-        e.stopPropagation();
-        markLessonComplete(id);
-        setCompletedLessons([...completedLessons, id]);
-        // Optional: Close lesson or keep open? Let's keep open to show success state.
-    };
 
     return (
         <div className="learning-container">
@@ -40,13 +23,13 @@ export default function Learning() {
             <div className="lessons-list">
                 {lessonsData.map((lesson) => {
                     const isCompleted = completedLessons.includes(lesson.id);
-                    const isActive = activeLesson === lesson.id;
 
                     return (
                         <div
                             key={lesson.id}
-                            className={`lesson-card ${isActive ? 'active' : ''}`}
-                            onClick={() => toggleLesson(lesson.id)}
+                            className={`lesson-card ${isCompleted ? 'completed-card' : ''}`}
+                            onClick={() => navigate(`/learn/${lesson.id}`)}
+                            style={{ cursor: 'pointer' }}
                         >
                             <div className="lesson-header">
                                 <div className="lesson-icon-wrapper">
@@ -58,51 +41,22 @@ export default function Learning() {
                             </div>
 
                             <h3 className="lesson-title">{lesson.title}</h3>
+                            <p className="lesson-description">{lesson.description}</p>
 
-                            <div className="lesson-content">
-                                <p>{lesson.description}</p>
-
-                                {!isActive && !isCompleted && (
-                                    <button className="btn btn-primary start-btn" onClick={(e) => handleStart(e, lesson.id)} style={{ marginTop: '1rem' }}>
-                                        <PlayCircle size={18} /> Start Lesson
-                                    </button>
-                                )}
-
-                                {isActive && (
-                                    <div className="lesson-details">
-                                        <hr />
-                                        <div className="lesson-body-content">
-                                            <h4>Full Lesson Content</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                                            <p><strong>Key Takeaways:</strong></p>
-                                            <ul>
-                                                <li>Always obey regulatory signs.</li>
-                                                <li>Come to a complete stop at Stop signs.</li>
-                                                <li>Yield to pedestrians in crosswalks.</li>
-                                            </ul>
-                                        </div>
-
-                                        <div className="lesson-actions">
-                                            {isCompleted ? (
-                                                <button className="btn btn-secondary start-btn" disabled>
-                                                    <Check size={18} /> Completed
-                                                </button>
-                                            ) : (
-                                                <button
-                                                    className="btn btn-primary start-btn"
-                                                    onClick={(e) => handleFinish(e, lesson.id)}
-                                                >
-                                                    Finish & Mark Complete
-                                                </button>
-                                            )}
-                                        </div>
-                                    </div>
+                            <div className="lesson-footer-row">
+                                {isCompleted ? (
+                                    <span className="status-badge completed">
+                                        <CheckCircle size={16} /> Completed
+                                    </span>
+                                ) : (
+                                    <span className="status-badge start">
+                                        <PlayCircle size={16} /> Start Lesson
+                                    </span>
                                 )}
                             </div>
 
-                            <div className="lesson-status">
-                                {isCompleted ? <CheckCircle size={20} color="var(--color-success)" /> : <div className="circle-placeholder"></div>}
+                            <div className="lesson-status-icon">
+                                {isCompleted ? <CheckCircle size={24} color="var(--color-success)" /> : null}
                             </div>
                         </div>
                     );

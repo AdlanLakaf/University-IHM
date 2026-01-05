@@ -5,7 +5,36 @@
         "title": "Understanding Regulatory Signs",
         "description": "Learn about stop signs, yield signs, and speed limits. These signs tell you what you must do, or must not do, according to the law.",
         "duration": "10 min",
-        "icon": "Octagon"
+        "icon": "Octagon",
+        "fullContent": [
+            {
+                "type": "paragraph",
+                "content": "Regulatory signs are the most important signs on the road because they inform you of traffic laws and regulations. You must obey these signs. Failure to do so can result in traffic tickets and points on your driving record."
+            },
+            {
+                "type": "image",
+                "src": "https://placehold.co/600x400/e9ecef/264653?text=Stop+Sign",
+                "caption": "A Stop sign requires a complete halt at the limit line."
+            },
+            {
+                "type": "heading",
+                "content": "Common Regulatory Signs"
+            },
+            {
+                "type": "list",
+                "content": [
+                    "Stop Sign: Come to a complete stop.",
+                    "Yield Sign: Slow down and give right of way.",
+                    "Speed Limit: Do not exceed the posted speed.",
+                    "Do Not Enter: Do not drive into this road.",
+                    "One Way: Traffic flows only in the direction of the arrow."
+                ]
+            },
+            {
+                "type": "alert",
+                "content": "Remember: Red always means stop or prohibited. White rectangles usually indicate regulations."
+            }
+        ]
     },
     {
         "id": 2,
@@ -13,7 +42,31 @@
         "title": "Warning Signs",
         "description": "Identify diamond-shaped yellow signs that warn you of upcoming hazards like curves, intersections, or pedestrian crossings.",
         "duration": "15 min",
-        "icon": "Triangle"
+        "icon": "Triangle",
+        "fullContent": [
+            {
+                "type": "paragraph",
+                "content": "Warning signs prepare you for what's ahead. They are usually yellow with black symbols and diamond-shaped. When you see one, slow down and be ready to stop if necessary."
+            },
+            {
+                "type": "image",
+                "src": "https://placehold.co/600x400/f8f9fa/e9c46a?text=Warning+Signs",
+                "caption": "Yellow diamond signs warn of potential hazards."
+            },
+            {
+                "type": "heading",
+                "content": "What to Look For"
+            },
+            {
+                "type": "list",
+                "content": [
+                    "Pedestrian Crossing: Watch for people walking.",
+                    "Slippery When Wet: Road may be slick in rain.",
+                    "Merge: Two lanes of traffic coming together.",
+                    "Traffic Signal Ahead: Be prepared for a light."
+                ]
+            }
+        ]
     },
     {
         "id": 3,
@@ -21,7 +74,26 @@
         "title": "Right of Way",
         "description": "Who goes first? Master the rules for 4-way stops, roundabouts, and merging into traffic.",
         "duration": "20 min",
-        "icon": "ArrowRightLeft"
+        "icon": "ArrowRightLeft",
+        "fullContent": [
+            {
+                "type": "paragraph",
+                "content": "Right-of-way rules help people drive safely when paths cross. You never 'have' the right of way; it must be yielded to you by others."
+            },
+            {
+                "type": "heading",
+                "content": "Intersections"
+            },
+            {
+                "type": "paragraph",
+                "content": "At a 4-way stop, the first car to arrive goes first. If two cars arrive at the same time, the car on the right goes first."
+            },
+            {
+                "type": "image",
+                "src": "https://placehold.co/600x400/e9ecef/2a9d8f?text=Right+of+Way",
+                "caption": "Yield to the vehicle on your right at 4-way stops."
+            }
+        ]
     },
     {
         "id": 4,
@@ -29,7 +101,21 @@
         "title": "Defensive Driving",
         "description": "Techniques to anticipate dangerous situations and avoid accidents.",
         "duration": "12 min",
-        "icon": "Shield"
+        "icon": "Shield",
+        "fullContent": [
+            {
+                "type": "heading",
+                "content": "Stay Alert"
+            },
+            {
+                "type": "paragraph",
+                "content": "Defensive driving means keeping a safe distance between you and other vehicles, checking your mirrors often, and anticipating what other drivers might do."
+            },
+            {
+                "type": "alert",
+                "content": "The 3-second rule: Pick a fixed point. When the car ahead passes it, count to three. If you pass it before you finish, you are following too closely."
+            }
+        ]
     },
     {
         "id": 5,
@@ -37,6 +123,20 @@
         "title": "Driving in Bad Weather",
         "description": "How to handle rain, snow, fog, and ice safely.",
         "duration": "15 min",
-        "icon": "CloudRain"
+        "icon": "CloudRain",
+        "fullContent": [
+            {
+                "type": "paragraph",
+                "content": "Weather can drastically change road conditions. In rain, snow, or fog, your visibility is reduced and stopping distances increase."
+            },
+            {
+                "type": "list",
+                "content": [
+                    "Rain: Roads are most slippery when rain first starts.",
+                    "Fog: Use low-beam headlights only.",
+                    "Snow/Ice: Drive slowly and avoid sudden braking."
+                ]
+            }
+        ]
     }
 ]
