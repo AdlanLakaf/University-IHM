@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import questionsData from '../data/questions.json';
 import { ArrowRight, RotateCcw, Home, Check, X } from 'lucide-react';
+import { saveQuizResult } from '../utils/storage';
 import './Quiz.css';
 
 export default function Quiz() {
@@ -31,8 +32,26 @@ export default function Quiz() {
             setSelectedOption(null);
             setIsAnswered(false);
         } else {
-            setIsFinished(true);
+            finishQuiz();
         }
+    };
+
+    const finishQuiz = () => {
+        // Determine the score. The state 'score' holds correct answers BEFORE the current one if we are just clicking.
+        // However, handleNext is called AFTER handleOptionClick.
+        // So 'score' state already has the correct value for the current answer if it was correct.
+        // Wait, useState updates are async. 
+        // BUT, handleNext is called via button click, which happens strictly after option click and re-render.
+        // So 'score' is up to date with the latest answer.
+
+        setIsFinished(true);
+
+        saveQuizResult({
+            date: new Date().toISOString(),
+            score: score,
+            total: questionsData.length,
+            passed: (score / questionsData.length) >= 0.8
+        });
     };
 
     const restartQuiz = () => {
