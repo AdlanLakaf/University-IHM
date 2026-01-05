@@ -34,6 +34,28 @@
                 "type": "alert",
                 "content": "Remember: Red always means stop or prohibited. White rectangles usually indicate regulations."
             }
+        ],
+        "quiz": [
+            {
+                "id": 1,
+                "question": "What does a red traffic sign usually indicate?",
+                "options": [
+                    "Caution",
+                    "Stop or Prohibited",
+                    "Services Ahead"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "id": 2,
+                "question": "Which sign requires a complete stop?",
+                "options": [
+                    "Yield Sign",
+                    "Stop Sign",
+                    "Speed Limit Sign"
+                ],
+                "correctAnswer": 1
+            }
         ]
     },
     {
@@ -66,6 +88,28 @@
                     "Traffic Signal Ahead: Be prepared for a light."
                 ]
             }
+        ],
+        "quiz": [
+            {
+                "id": 1,
+                "question": "What is the typical shape of a warning sign?",
+                "options": [
+                    "Octagon",
+                    "Diamond",
+                    "Rectangle"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "id": 2,
+                "question": "What color are warning signs usually?",
+                "options": [
+                    "Red",
+                    "Blue",
+                    "Yellow"
+                ],
+                "correctAnswer": 2
+            }
         ]
     },
     {
@@ -93,6 +137,18 @@
                 "src": "https://placehold.co/600x400/e9ecef/2a9d8f?text=Right+of+Way",
                 "caption": "Yield to the vehicle on your right at 4-way stops."
             }
+        ],
+        "quiz": [
+            {
+                "id": 1,
+                "question": "At a 4-way stop, who goes first?",
+                "options": [
+                    "The biggest vehicle",
+                    "The first vehicle to arrive",
+                    "The vehicle on the left"
+                ],
+                "correctAnswer": 1
+            }
         ]
     },
     {
@@ -115,6 +171,18 @@
                 "type": "alert",
                 "content": "The 3-second rule: Pick a fixed point. When the car ahead passes it, count to three. If you pass it before you finish, you are following too closely."
             }
+        ],
+        "quiz": [
+            {
+                "id": 1,
+                "question": "What is the 3-second rule used for?",
+                "options": [
+                    "Measuring speed",
+                    "Checking following distance",
+                    "Checking tire pressure"
+                ],
+                "correctAnswer": 1
+            }
         ]
     },
     {
@@ -136,6 +204,18 @@
                     "Fog: Use low-beam headlights only.",
                     "Snow/Ice: Drive slowly and avoid sudden braking."
                 ]
+            }
+        ],
+        "quiz": [
+            {
+                "id": 1,
+                "question": "When are roads most slippery during rain?",
+                "options": [
+                    "After hours of rain",
+                    "When rain first starts",
+                    "After the rain stops"
+                ],
+                "correctAnswer": 1
             }
         ]
     }

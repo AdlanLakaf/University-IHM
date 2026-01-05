@@ -13,6 +13,8 @@ export default function Learning() {
         setCompletedLessons(getProgress().completedLessons);
     }, []);
 
+    const allLessonsCompleted = lessonsData.every(l => completedLessons.includes(l.id));
+
     return (
         <div className="learning-container">
             <header className="page-header">
@@ -29,7 +31,6 @@ export default function Learning() {
                             key={lesson.id}
                             className={`lesson-card ${isCompleted ? 'completed-card' : ''}`}
                             onClick={() => navigate(`/learn/${lesson.id}`)}
-                            style={{ cursor: 'pointer' }}
                         >
                             <div className="lesson-header">
                                 <div className="lesson-icon-wrapper">
@@ -57,6 +58,38 @@ export default function Learning() {
                         </div>
                     );
                 })}
+
+                {/* Final Exam Card */}
+                <div
+                    className={`lesson-card exam-card ${!allLessonsCompleted ? 'locked' : ''}`}
+                    onClick={() => allLessonsCompleted && navigate('/final-exam')}
+                    style={{ cursor: allLessonsCompleted ? 'pointer' : 'not-allowed', marginTop: '1rem', borderTop: '4px solid var(--color-accent)' }}
+                >
+                    <div className="lesson-header">
+                        <div className="lesson-icon-wrapper">
+                            <span className="lesson-category" style={{ background: '#ffe5e0', color: '#E76F51' }}>FINAL CHALLENGE</span>
+                        </div>
+                    </div>
+
+                    <h3 className="lesson-title" style={{ fontSize: '1.4rem', color: '#E76F51' }}>Final Driving Exam</h3>
+                    <p className="lesson-description">
+                        {allLessonsCompleted
+                            ? "Proove your skills to earn your official Driver License!"
+                            : "Complete all lessons to unlock the final exam."}
+                    </p>
+
+                    <div className="lesson-footer-row">
+                        {allLessonsCompleted ? (
+                            <span className="status-badge start" style={{ background: '#E76F51' }}>
+                                <PlayCircle size={16} /> Start Final Exam
+                            </span>
+                        ) : (
+                            <span className="status-badge locked" style={{ background: '#e9ecef', color: '#adb5bd' }}>
+                                Locked 🔒
+                            </span>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );

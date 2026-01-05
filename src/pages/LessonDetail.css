@@ -143,10 +143,119 @@
     margin-top: var(--spacing-xl);
     border-top: 1px solid #e9ecef;
     padding-top: var(--spacing-lg);
+}
+
+.lesson-footer-content {
     text-align: center;
 }
 
 .btn-large {
     padding: 1rem 3rem;
     font-size: 1.125rem;
+}
+
+/* Quiz Section */
+.lesson-quiz-section {
+    background: #f8f9fa;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: left;
+}
+
+.quiz-section-title {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+
+.quiz-section-desc {
+    color: #6c757d;
+    margin-bottom: var(--spacing-lg);
+}
+
+.quiz-question-card {
+    background: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--color-secondary);
+}
+
+.question-text {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid #e9ecef;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.option-label:hover {
+    background: #f1f3f5;
+}
+
+.option-label.selected {
+    background: #e3fcf7;
+    /* Light teal */
+    border-color: var(--color-primary);
+    color: var(--color-text);
+}
+
+.option-label input {
+    accent-color: var(--color-primary);
+    width: 18px;
+    height: 18px;
+}
+
+.quiz-alert {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: var(--spacing-md);
+    font-weight: 500;
+}
+
+.quiz-alert.error {
+    background: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffe0b2;
+}
+
+.lesson-completed-message {
+    text-align: center;
+    padding: 2rem;
+    background: #f1fcf1;
+    border-radius: var(--radius-lg);
+}
+
+.success-icon-large {
+    color: var(--color-success);
+    margin-bottom: 1rem;
+}
+
+.lesson-completed-message h3 {
+    color: var(--color-success);
+    margin-bottom: 0.5rem;
+}
+
+.lesson-completed-message p {
+    color: #495057;
+    margin-bottom: 1.5rem;
 }

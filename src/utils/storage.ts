@@ -8,24 +8,33 @@ export interface QuizResult {
 }
 
 export interface UserProgress {
-    completedLessons: number[]; // Array of lesson IDs
-    quizScores: QuizResult[];
+    completedLessons: number[];
+    quizScores: {
+        quizId?: number; // Optional if generic
+        score: number;
+        total: number;
+        date: string;
+    }[];
+    hasLicense?: boolean;
 }
 
 const defaultProgress: UserProgress = {
     completedLessons: [],
-    quizScores: []
+    quizScores: [],
+    hasLicense: false
 };
 
 export const getProgress = (): UserProgress => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return defaultProgress;
-    try {
-        return JSON.parse(stored);
-    } catch (e) {
-        console.error("Failed to parse progress", e);
-        return defaultProgress;
+    if (stored) {
+        try {
+            return JSON.parse(stored);
+        } catch (e) {
+            console.error("Failed to parse progress", e);
+            return defaultProgress;
+        }
     }
+    return { completedLessons: [], quizScores: [], hasLicense: false };
 };
 
 export const saveProgress = (progress: UserProgress) => {
@@ -43,5 +52,11 @@ export const markLessonComplete = (lessonId: number) => {
 export const saveQuizResult = (result: QuizResult) => {
     const progress = getProgress();
     progress.quizScores.push(result);
+    saveProgress(progress);
+};
+
+export const issueLicense = () => {
+    const progress = getProgress();
+    progress.hasLicense = true;
     saveProgress(progress);
 };

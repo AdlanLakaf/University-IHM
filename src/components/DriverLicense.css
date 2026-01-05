@@ -1,0 +1,124 @@
+.license-card-container {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.license-card {
+    width: 400px;
+    height: 250px;
+    background: linear-gradient(135deg, #fdfbf7 0%, #e0e0e0 100%);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    /* Monospace feels official */
+    animation: flipIn 0.8s ease-out;
+    background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="%23ccc" opacity="0.3"/></svg>');
+}
+
+@keyframes flipIn {
+    from {
+        transform: rotateY(90deg) scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.license-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #2A9D8F;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.license-title {
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #264653;
+}
+
+.license-state {
+    font-weight: 700;
+    color: #2A9D8F;
+    letter-spacing: 1px;
+}
+
+.license-body {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.license-photo {
+    width: 90px;
+    height: 110px;
+    background: #e9ecef;
+    border: 2px solid #ced4da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.license-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px dashed #ced4da;
+    padding-bottom: 2px;
+}
+
+.info-group label {
+    font-size: 0.65rem;
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.info-group span {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #343a40;
+}
+
+.info-highlight {
+    color: #E76F51 !important;
+    font-weight: 800 !important;
+}
+
+.status-valid {
+    color: #2A9D8F !important;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.license-footer {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #495057;
+}
+
+.license-signature {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 1.5rem;
+    transform: rotate(-5deg);
+    color: #264653;
+}

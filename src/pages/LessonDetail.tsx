@@ -11,6 +11,10 @@ export default function LessonDetail() {
     const [lesson, setLesson] = useState<any>(null);
     const [isCompleted, setIsCompleted] = useState(false);
 
+    // Quiz State
+    const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
+    const [quizStatus, setQuizStatus] = useState<'idle' | 'failed' | 'success'>('idle');
+
     useEffect(() => {
         if (id) {
             const foundLesson = lessonsData.find(l => l.id === parseInt(id));
@@ -26,12 +30,28 @@ export default function LessonDetail() {
         }
     }, [id, navigate]);
 
-    const handleComplete = () => {
-        if (lesson) {
+    const handleOptionSelect = (questionId: number, optionIndex: number) => {
+        setQuizAnswers(prev => ({ ...prev, [questionId]: optionIndex }));
+        setQuizStatus('idle'); // Reset status on change
+    };
+
+    const handleQuizSubmit = () => {
+        if (!lesson || !lesson.quiz) return;
+
+        let allCorrect = true;
+        for (const q of lesson.quiz) {
+            if (quizAnswers[q.id] !== q.correctAnswer) {
+                allCorrect = false;
+                break;
+            }
+        }
+
+        if (allCorrect) {
+            setQuizStatus('success');
             markLessonComplete(lesson.id);
             setIsCompleted(true);
-            // Optional: Navigate back after a delay or show a success modal?
-            // For now, let's just show state change and allow manual back navigation.
+        } else {
+            setQuizStatus('failed');
         }
     };
 
@@ -89,13 +109,58 @@ export default function LessonDetail() {
 
             <footer className="lesson-footer">
                 {!isCompleted ? (
-                    <button className="btn btn-primary btn-large" onClick={handleComplete}>
-                        Mark as Complete
-                    </button>
+                    <div className="lesson-quiz-section">
+                        <h3 className="quiz-section-title">Quick Quiz</h3>
+                        <p className="quiz-section-desc">Answer correctly to complete the lesson.</p>
+
+                        <div className="quiz-questions">
+                            {lesson.quiz && lesson.quiz.map((q: any) => (
+                                <div key={q.id} className="quiz-question-card">
+                                    <p className="question-text">{q.question}</p>
+                                    <div className="options-grid">
+                                        {q.options.map((opt: string, idx: number) => (
+                                            <label key={idx} className={`option-label ${quizAnswers[q.id] === idx ? 'selected' : ''}`}>
+                                                <input
+                                                    type="radio"
+                                                    name={`question-${q.id}`}
+                                                    value={idx}
+                                                    checked={quizAnswers[q.id] === idx}
+                                                    onChange={() => handleOptionSelect(q.id, idx)}
+                                                />
+                                                {opt}
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {quizStatus === 'failed' && (
+                            <div className="quiz-alert error">
+                                <AlertTriangle size={18} />
+                                <span>Incorrect. Please try again. you must get all answers correct.</span>
+                            </div>
+                        )}
+
+                        <button
+                            className="btn btn-primary btn-large"
+                            onClick={handleQuizSubmit}
+                            disabled={!lesson.quiz || Object.keys(quizAnswers).length < lesson.quiz.length}
+                        >
+                            Check Answers
+                        </button>
+                    </div>
                 ) : (
-                    <button className="btn btn-secondary btn-large" disabled>
-                        Lesson Completed
-                    </button>
+                    <div className="lesson-completed-message">
+                        <div className="success-icon-large">
+                            <CheckCircle size={48} />
+                        </div>
+                        <h3>Lesson Completed!</h3>
+                        <p>Great job! You've mastered this topic.</p>
+                        <button className="btn btn-outline" onClick={() => navigate('/learn')}>
+                            Back to Lessons
+                        </button>
+                    </div>
                 )}
             </footer>
         </div>
