@@ -2,17 +2,19 @@
     {
         "id": 1,
         "question": "What does an octagonal (eight-sided) sign mean?",
+        "image": "/images/stop_sign.jpg",
         "options": [
-            "Yield",
+            "Roundabout ahead",
             "Stop",
             "Speed Limit",
-            "No Entry"
+            "Wrong Way"
         ],
         "answer": "Stop"
     },
     {
         "id": 2,
         "question": "When seeing a flashing red light at an intersection, you must:",
+        "image": "/images/flashing_red_light.png",
         "options": [
             "Slow down and proceed with caution",
             "Stop completely, then proceed when safe",
@@ -24,6 +26,7 @@
     {
         "id": 3,
         "question": "You may cross a double solid yellow line to:",
+        "image": "/images/double_yellow_line.jpg",
         "options": [
             "Pass a slow moving truck",
             "Turn into a driveway",
@@ -35,6 +38,7 @@
     {
         "id": 4,
         "question": "If two vehicles arrive at a 4-way stop at the same time:",
+        "image": "/images/four_way_stop.jpg",
         "options": [
             "The vehicle on the left goes first",
             "The vehicle on the right goes first",
@@ -46,6 +50,7 @@
     {
         "id": 5,
         "question": "What is the safest way to enter a highway from an entrance ramp?",
+        "image": "/images/highway_merge.jpg",
         "options": [
             "Stop and wait for a gap",
             "Drive slowly on the shoulder",

@@ -100,6 +100,18 @@ export default function Quiz() {
             </div>
 
             <div className="question-card">
+                {currentQuestion.image && (
+                    <div className="question-image-container">
+                        <img
+                            src={currentQuestion.image}
+                            alt="Question illustration"
+                            className="question-image"
+                        />
+                        {currentQuestion.id === 1 && (
+                            <div className="blur-overlay"></div>
+                        )}
+                    </div>
+                )}
                 <h2 className="question-text">{currentQuestion.question}</h2>
 
                 <div className="options-list">
