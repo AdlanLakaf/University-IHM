@@ -40,7 +40,7 @@ export default function Learning() {
                                 </div>
                             </div>
 
-                            <h3 className="lesson-title">{lesson.title}</h3>
+                            <h3 className="lesson-title" style={{ fontSize: '1.25rem' }}>{lesson.title}</h3>
                             <p className="lesson-description">{lesson.description}</p>
 
                             <div className="lesson-footer-row">
@@ -53,10 +53,6 @@ export default function Learning() {
                                         <PlayCircle size={16} /> Start Lesson
                                     </span>
                                 )}
-                            </div>
-
-                            <div className="lesson-status-icon">
-                                {isCompleted ? <CheckCircle size={24} color="var(--color-success)" /> : null}
                             </div>
                         </div>
                     );
