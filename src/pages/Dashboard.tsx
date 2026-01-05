@@ -1,9 +1,55 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PlayCircle, BookOpen, Award, TrendingUp } from 'lucide-react';
+import { PlayCircle, BookOpen, Award, TrendingUp, Trash2 } from 'lucide-react';
+import { getProgress, type UserProgress, saveProgress } from '../utils/storage';
+import lessonsData from '../data/lessons.json';
 import './Dashboard.css';
 
 export default function Dashboard() {
     const navigate = useNavigate();
+    const [progress, setProgress] = useState<UserProgress | null>(null);
+    const [animatingProgress, setAnimatingProgress] = useState(0);
+    const [showResetConfirm, setShowResetConfirm] = useState(false);
+
+    useEffect(() => {
+        const data = getProgress();
+        setProgress(data);
+
+        // Animate progress calc
+        const completed = data.completedLessons.length;
+        const total = lessonsData.length;
+        const target = Math.round((completed / total) * 100);
+
+        // Simple animation effect
+        const timer = setTimeout(() => {
+            setAnimatingProgress(target);
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    const handleResetClick = () => {
+        setShowResetConfirm(true);
+    };
+
+    const cancelReset = () => {
+        setShowResetConfirm(false);
+    };
+
+    const confirmReset = () => {
+        saveProgress({ completedLessons: [], quizScores: [] });
+        setProgress({ completedLessons: [], quizScores: [] });
+        setAnimatingProgress(0);
+        setShowResetConfirm(false);
+    };
+
+    // If progress is null (initial load), count is 0.
+    // We use animatingProgress for the bar width and text to allow "count up" feel.
+
+    const quizScores = progress?.quizScores || [];
+    const avgScore = quizScores.length > 0
+        ? Math.round(quizScores.reduce((acc, curr) => acc + (curr.score / curr.total) * 100, 0) / quizScores.length)
+        : 0;
 
     return (
         <div className="dashboard-container">
@@ -27,9 +73,9 @@ export default function Dashboard() {
                     <div className="stat-info">
                         <span className="stat-label">Course Progress</span>
                         <div className="progress-bar-container">
-                            <div className="progress-bar" style={{ width: '65%' }}></div>
+                            <div className="progress-bar" style={{ width: `${animatingProgress}%` }}></div>
                         </div>
-                        <span className="stat-value">65%</span>
+                        <span className="stat-value">{animatingProgress}%</span>
                     </div>
                 </div>
 
@@ -39,7 +85,7 @@ export default function Dashboard() {
                     </div>
                     <div className="stat-info">
                         <span className="stat-label">Average Score</span>
-                        <span className="stat-value">82%</span>
+                        <span className="stat-value">{avgScore}%</span>
                     </div>
                 </div>
             </section>
@@ -76,6 +122,26 @@ export default function Dashboard() {
                 </div>
                 <button className="btn btn-secondary" onClick={() => navigate('/learn')}>Review Now</button>
             </div>
+
+            <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                <button onClick={handleResetClick} style={{ background: 'transparent', border: '1px solid #ccc', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem', color: '#666', display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                    <Trash2 size={14} /> Reset Progress
+                </button>
+            </div>
+
+            {/* Confirmation Modal */}
+            {showResetConfirm && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>Reset Progress?</h3>
+                        <p>Are you sure you want to reset all your progress? This action cannot be undone.</p>
+                        <div className="modal-actions">
+                            <button className="btn btn-secondary" onClick={cancelReset}>Cancel</button>
+                            <button className="btn btn-primary" style={{ backgroundColor: 'var(--color-error)' }} onClick={confirmReset}>Yes, Reset</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
