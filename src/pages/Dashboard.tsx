@@ -56,8 +56,8 @@ export default function Dashboard() {
             {/* Welcome Section */}
             <header className="dashboard-header">
                 <div>
-                    <h1 className="welcome-title">Welcome back, Alex! 👋</h1>
-                    <p className="welcome-subtitle">Ready to ace your driving test? Let's continue learning.</p>
+                    <h1 className="welcome-title">Welcome</h1>
+                    <p className="welcome-subtitle">Ready to Learn your driving test? Let's continue learning.</p>
                 </div>
                 <div className="date-badge">
                     {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
